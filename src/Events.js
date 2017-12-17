@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Counter from "./Counter"
+
 class MyEvents extends Component {
 
     constructor(props){
@@ -7,30 +9,51 @@ class MyEvents extends Component {
         this.state={
             counter : 0
         }
+        // this.incrementCounter = this.incrementCounter.bind(this)
         this.incrementCounter = this.incrementCounter.bind(this)
+        this.decrementCounter = this.decrementCounter.bind(this)
         
     }
-
-    // clickHandler(){
-    //     console.log('click Passed');
+    // incrementCounter(){
+    //     this.setState({
+    //         counter: this.state.counter+1
+    //     })
     // }
 
     incrementCounter(){
-        this.setState({
-            counter: this.state.counter+1
-        })
+        // console.log("increment")
+        if (this.state.counter <= 11){
+            this.setState({counter : this.state.counter + 1})
+        }
+        else console.log("Maximum range reached!")
+    }
+    
+    decrementCounter(){
+        // console.log("decrement")
+
+        if (this.state.counter === 0){
+            console.log('Maximum range reached!')
+        }
+        else
+        this.setState({counter : this.state.counter - 1})
+
     }
 
 
     render(){
         return(
             <div>
-            <h1>MyEvents</h1>
+
+            <Counter counter= {this.state.counter} increment={this.incrementCounter} decrement={this.decrementCounter} />
+
+
+
+            {/* <h1>MyEvents</h1> */}
             {/* <button onClick={this.clickHandler}>First Button</button> */}
 
-            <button onClick = {this.incrementCounter.bind(this)}>+</button>    
-            <span>{this.state.counter}</span>
-            <button onClick = {this.incrementCounter}>+</button>      
+            {/* <button onClick = {this.incrementCounter.bind(this)}>+</button>     */}
+            {/* <span>{this.state.counter}</span> */}
+            {/* <button onClick = {this.incrementCounter}>+</button>       */}
             
             </div>
         )
